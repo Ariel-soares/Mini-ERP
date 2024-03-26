@@ -12,17 +12,21 @@ import java.util.Objects;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;
+    private String name;
+    private String username;
+    private String password;
     private String email;
-    private Boolean admin;
+    private Boolean isAdmin;
 
     public User(){}
 
-    public User(Long id, String nome, String email, Boolean admin) {
+    public User(Long id, String name, String email, Boolean isAdmin, String username, String password) {
         this.id = id;
-        this.nome = nome;
+        this.name = name;
         this.email = email;
-        this.admin = admin;
+        this.isAdmin = isAdmin;
+        this.username = username;
+        this.password = password;
     }
 
     public Long getId() {
@@ -34,11 +38,11 @@ import java.util.Objects;
     }
 
     public String getNome() {
-        return nome;
+        return name;
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.name = nome;
     }
 
     public String getEmail() {
@@ -47,9 +51,17 @@ import java.util.Objects;
 
     public void setEmail(String email) {this.email = email;}
 
-    public Boolean getAdmin() {return admin;}
+    public Boolean getAdmin() {return isAdmin;}
 
-    public void setAdmin(Boolean admin) {this.admin = admin;}
+    public void setAdmin(Boolean admin) {this.isAdmin = admin;}
+
+    public String getPassword() {return password;}
+
+    public void setPassword(String password) {this.password = password;}
+
+    public String getUsername() {return username;}
+
+    public void setUsername(String username) {this.username = username;}
 
     @Override
     public boolean equals(Object o) {
@@ -63,6 +75,5 @@ import java.util.Objects;
     public int hashCode() {
         return Objects.hash(id);
     }
-
 
 }
