@@ -14,14 +14,15 @@ import java.util.Objects;
     private Long id;
     private String nome;
     private String email;
+    private Boolean admin;
 
-    public User(){
-    }
+    public User(){}
 
-    public User(Long id, String nome, String email) {
+    public User(Long id, String nome, String email, Boolean admin) {
         this.id = id;
         this.nome = nome;
         this.email = email;
+        this.admin = admin;
     }
 
     public Long getId() {
@@ -44,9 +45,11 @@ import java.util.Objects;
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public void setEmail(String email) {this.email = email;}
+
+    public Boolean getAdmin() {return admin;}
+
+    public void setAdmin(Boolean admin) {this.admin = admin;}
 
     @Override
     public boolean equals(Object o) {
