@@ -11,6 +11,6 @@ public class Product {
     @Id
     private Long id;
     private String name;
-
+    private String description;
 
 }
