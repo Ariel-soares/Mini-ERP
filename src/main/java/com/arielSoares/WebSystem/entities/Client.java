@@ -1,11 +1,9 @@
-/*package com.arielSoares.WebSystem.entities;
+package com.arielSoares.WebSystem.entities;
 
 import jakarta.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -17,23 +15,22 @@ public class Client implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String adress;
+    private String address;
     private String details;
     private String phone;
     private String email;
     @Autowired
-    private List<Order> orders = new ArrayList<>();
+ //   private List<Order> orders = new ArrayList<>();
 
     public Client(){}
 
-    public Client(Long id, String name, String adress, String details, String phone, String email, List<Order> orders) {
+    public Client(Long id, String name, String address, String details, String phone, String email) {
         this.id = id;
         this.name = name;
-        this.adress = adress;
+        this.address = address;
         this.details = details;
         this.phone = phone;
         this.email = email;
-        this.orders = orders;
     }
 
     public Long getId() {
@@ -52,12 +49,12 @@ public class Client implements Serializable {
         this.name = name;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getDetails() {
@@ -67,10 +64,10 @@ public class Client implements Serializable {
     public void setDetails(String details) {
         this.details = details;
     }
-
+/*
     public List<Order> getOrders() {
         return orders;
-    }
+    }*/
 
     public String getPhone() {
         return phone;
@@ -100,4 +97,4 @@ public class Client implements Serializable {
         return Objects.hash(getId());
     }
 
-}*/
+}

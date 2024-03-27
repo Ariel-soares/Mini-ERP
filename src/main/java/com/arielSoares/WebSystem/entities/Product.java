@@ -1,4 +1,4 @@
-/*package com.arielSoares.WebSystem.entities;
+package com.arielSoares.WebSystem.entities;
 
 import jakarta.persistence.*;
 
@@ -69,4 +69,4 @@ public class Product implements Serializable {
     public int hashCode() {
         return Objects.hash(getId());
     }
-}*/
+}
