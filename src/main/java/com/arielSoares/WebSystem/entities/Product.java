@@ -1,28 +1,28 @@
-package com.arielSoares.entities;
+/*package com.arielSoares.WebSystem.entities;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "tb_sector")
-public class Sector {
+@Table(name="tb_product")
+public class Product implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String description;
-    private List<Product> products = new ArrayList<>();
+    private Double price;
 
-    public Sector(){}
+    public Product(){}
 
-    public Sector(Long id, String name, String description) {
+    public Product(Long id, String name, String description, Double price) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.price = price;
     }
 
     public Long getId() {
@@ -49,20 +49,24 @@ public class Sector {
         this.description = description;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Sector sector = (Sector) o;
-        return Objects.equals(getId(), sector.getId());
+        Product product = (Product) o;
+        return Objects.equals(getId(), product.getId());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getId());
     }
-}
+}*/

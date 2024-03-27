@@ -1,27 +1,31 @@
-package com.arielSoares.entities;
+/*package com.arielSoares.WebSystem.entities;
 
 import jakarta.persistence.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name="tb_product")
-public class Product {
+@Table(name = "tb_sector")
+public class Sector implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String description;
-    private Double price;
+    @Autowired
+    private List<Product> products = new ArrayList<>();
 
-    public Product(){}
+    public Sector(){}
 
-    public Product(Long id, String name, String description, Double price) {
+    public Sector(Long id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.price = price;
     }
 
     public Long getId() {
@@ -48,20 +52,16 @@ public class Product {
         this.description = description;
     }
 
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
+    public List<Product> getProducts() {
+        return products;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return Objects.equals(getId(), product.getId());
+        Sector sector = (Sector) o;
+        return Objects.equals(getId(), sector.getId());
     }
 
     @Override
@@ -69,3 +69,4 @@ public class Product {
         return Objects.hash(getId());
     }
 }
+*/

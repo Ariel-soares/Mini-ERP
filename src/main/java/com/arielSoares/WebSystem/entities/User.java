@@ -1,4 +1,4 @@
-package com.arielSoares.entities;
+package com.arielSoares.WebSystem.entities;
 
 import jakarta.persistence.*;
 
@@ -17,6 +17,7 @@ import java.util.Objects;
     private String password;
     private String email;
     private Boolean isAdmin;
+
 
     public User(){}
 

@@ -1,14 +1,17 @@
-package com.arielSoares.entities;
+/*package com.arielSoares.WebSystem.entities;
 
 import jakarta.persistence.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name="tb_client")
-public class Client {
+public class Client implements Serializable {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,15 +19,20 @@ public class Client {
     private String name;
     private String adress;
     private String details;
+    private String phone;
+    private String email;
+    @Autowired
     private List<Order> orders = new ArrayList<>();
 
     public Client(){}
 
-    public Client(Long id, String name, String adress, String details, List<Order> orders) {
+    public Client(Long id, String name, String adress, String details, String phone, String email, List<Order> orders) {
         this.id = id;
         this.name = name;
         this.adress = adress;
         this.details = details;
+        this.phone = phone;
+        this.email = email;
         this.orders = orders;
     }
 
@@ -64,6 +72,22 @@ public class Client {
         return orders;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -75,5 +99,5 @@ public class Client {
     public int hashCode() {
         return Objects.hash(getId());
     }
-    
-}
+
+}*/
