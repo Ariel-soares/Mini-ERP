@@ -1,9 +1,11 @@
 package com.arielSoares.WebSystem.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -19,8 +21,10 @@ public class Client implements Serializable {
     private String details;
     private String phone;
     private String email;
-    @Autowired
- //   private List<Order> orders = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "client")
+    private List<Order> orders = new ArrayList<>();
 
     public Client(){}
 
@@ -64,10 +68,10 @@ public class Client implements Serializable {
     public void setDetails(String details) {
         this.details = details;
     }
-/*
+
     public List<Order> getOrders() {
         return orders;
-    }*/
+    }
 
     public String getPhone() {
         return phone;
@@ -96,5 +100,6 @@ public class Client implements Serializable {
     public int hashCode() {
         return Objects.hash(getId());
     }
+
 
 }
