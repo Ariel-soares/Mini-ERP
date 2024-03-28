@@ -1,7 +1,7 @@
-/*package com.arielSoares.WebSystem.entities;
+package com.arielSoares.WebSystem.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,7 +17,8 @@ public class Sector implements Serializable {
     private Long id;
     private String name;
     private String description;
-    @Autowired
+    @JsonIgnore
+    @OneToMany(mappedBy = "sector")
     private List<Product> products = new ArrayList<>();
 
     public Sector(){}
@@ -69,4 +70,3 @@ public class Sector implements Serializable {
         return Objects.hash(getId());
     }
 }
-*/

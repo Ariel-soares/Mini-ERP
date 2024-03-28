@@ -15,14 +15,18 @@ public class Product implements Serializable {
     private String name;
     private String description;
     private Double price;
+    @ManyToOne
+    @JoinColumn(name = "sector_id")
+    private Sector sector;
 
     public Product(){}
 
-    public Product(Long id, String name, String description, Double price) {
+    public Product(Long id, String name, String description, Double price, Sector sector) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
+        this.sector = sector;
     }
 
     public Long getId() {
@@ -68,5 +72,13 @@ public class Product implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getId());
+    }
+
+    public Sector getSector() {
+        return sector;
+    }
+
+    public void setSector(Sector sector) {
+        this.sector = sector;
     }
 }
