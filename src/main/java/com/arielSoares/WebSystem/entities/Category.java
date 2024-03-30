@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "tb_sector")
-public class Sector implements Serializable {
+@Table(name = "tb_category")
+public class Category implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,12 +18,12 @@ public class Sector implements Serializable {
     private String name;
     private String description;
     @JsonIgnore
-    @OneToMany(mappedBy = "sector")
+    @OneToMany(mappedBy = "category")
     private List<Product> products = new ArrayList<>();
 
-    public Sector(){}
+    public Category(){}
 
-    public Sector(Long id, String name, String description) {
+    public Category(Long id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -61,8 +61,8 @@ public class Sector implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Sector sector = (Sector) o;
-        return Objects.equals(getId(), sector.getId());
+        Category category = (Category) o;
+        return Objects.equals(getId(), category.getId());
     }
 
     @Override

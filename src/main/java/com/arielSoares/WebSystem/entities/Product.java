@@ -16,17 +16,17 @@ public class Product implements Serializable {
     private String description;
     private Double price;
     @ManyToOne
-    @JoinColumn(name = "sector_id")
-    private Sector sector;
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     public Product(){}
 
-    public Product(Long id, String name, String description, Double price, Sector sector) {
+    public Product(Long id, String name, String description, Double price, Category category) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
-        this.sector = sector;
+        this.category = category;
     }
 
     public Long getId() {
@@ -74,11 +74,11 @@ public class Product implements Serializable {
         return Objects.hash(getId());
     }
 
-    public Sector getSector() {
-        return sector;
+    public Category getSector() {
+        return category;
     }
 
-    public void setSector(Sector sector) {
-        this.sector = sector;
+    public void setSector(Category category) {
+        this.category = category;
     }
 }
