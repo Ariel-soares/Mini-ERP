@@ -39,21 +39,23 @@ public class TestConfig implements CommandLineRunner {
         Client c1 = new Client(null, "ariel", "Salvador", "Cliente", "75 9 91796995", "ariel.sfranco@gmail.com");
         Client c2 = new Client(null, "Jonata", "Salvador", "Cliente", "75 9 91796995", "ariel.sfranco@gmail.com");
 
-        Category s1 = new Category(null, "vidros", "Setor destinado a artigos de vidraçaria");
-        Category s2 = new Category(null, "Copos", "Setor direcionado a artigos de serigrafia de copos");
+        Category cat1 = new Category(null, "vidros", "Setor destinado a artigos de vidraçaria");
+        Category cat2 = new Category(null, "Copos", "Setor direcionado a artigos de serigrafia de copos");
 
-        Product p1 = new Product(null, "Monitor", "Monitor de computador", 300.00, s1);
-        Product p2 = new Product(null, "Computer", "Computer", 3000.00, s2);
+        Product p1 = new Product(null, "Box", "Box de vidro", 300.00);
+        Product p2 = new Product(null, "Copo Stanley", "Copo para serigrafia", 200.00);
 
         Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07z"), c1, OrderStatus.PAID);
 
-        categoryRepository.saveAll(Arrays.asList(s1,s2));
+        categoryRepository.saveAll(Arrays.asList(cat1,cat2));
         userRepository.saveAll(Arrays.asList(u1,u2));
         productRepository.saveAll(Arrays.asList(p1,p2));
         clientRepository.saveAll(Arrays.asList(c1,c2));
         orderRepository.saveAll(Arrays.asList(o1));
 
+        p1.getCategories().add(cat1);
+        p2.getCategories().add(cat2);
+
+        productRepository.saveAll(Arrays.asList(p1, p2));
     }
-
-
 }

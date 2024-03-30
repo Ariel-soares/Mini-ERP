@@ -3,7 +3,9 @@ package com.arielSoares.WebSystem.entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name="tb_product")
@@ -15,18 +17,17 @@ public class Product implements Serializable {
     private String name;
     private String description;
     private Double price;
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
+    @ManyToMany
+    @JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories = new HashSet<>();
 
     public Product(){}
 
-    public Product(Long id, String name, String description, Double price, Category category) {
+    public Product(Long id, String name, String description, Double price) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
-        this.category = category;
     }
 
     public Long getId() {
@@ -74,11 +75,7 @@ public class Product implements Serializable {
         return Objects.hash(getId());
     }
 
-    public Category getSector() {
-        return category;
-    }
-
-    public void setSector(Category category) {
-        this.category = category;
+    public Set<Category> getCategories() {
+        return categories;
     }
 }

@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_category")
@@ -18,8 +16,8 @@ public class Category implements Serializable {
     private String name;
     private String description;
     @JsonIgnore
-    @OneToMany(mappedBy = "category")
-    private List<Product> products = new ArrayList<>();
+    @ManyToMany(mappedBy = "categories")
+    private Set<Product> products = new HashSet<>();
 
     public Category(){}
 
@@ -53,7 +51,7 @@ public class Category implements Serializable {
         this.description = description;
     }
 
-    public List<Product> getProducts() {
+    public Set<Product> getProducts() {
         return products;
     }
 
