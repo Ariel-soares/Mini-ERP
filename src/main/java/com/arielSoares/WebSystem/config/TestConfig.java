@@ -1,6 +1,7 @@
 package com.arielSoares.WebSystem.config;
 
 import com.arielSoares.WebSystem.entities.*;
+import com.arielSoares.WebSystem.entities.enums.OrderStatus;
 import com.arielSoares.WebSystem.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -44,7 +45,7 @@ public class TestConfig implements CommandLineRunner {
         Product p1 = new Product(null, "Monitor", "Monitor de computador", 300.00, s1);
         Product p2 = new Product(null, "Computer", "Computer", 3000.00, s2);
 
-        Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07z"), c1);
+        Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07z"), c1, OrderStatus.PAID);
 
         sectorRepository.saveAll(Arrays.asList(s1,s2));
         userRepository.saveAll(Arrays.asList(u1,u2));
