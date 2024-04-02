@@ -3,6 +3,8 @@ package com.arielSoares.WebSystem.entities.pk;
 import com.arielSoares.WebSystem.entities.Order;
 import com.arielSoares.WebSystem.entities.Product;
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -10,7 +12,12 @@ import java.util.Objects;
 @Embeddable
 public class OrderItemPK implements Serializable {
 
+    @ManyToOne
+    @JoinColumn(name = "order_id")
     private Order order;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
     private Product product;
 
     public Order getOrder() {
