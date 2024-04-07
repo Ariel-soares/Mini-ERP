@@ -1,6 +1,7 @@
 package com.arielSoares.WebSystem.services;
 
 import com.arielSoares.WebSystem.entities.Client;
+import com.arielSoares.WebSystem.entities.User;
 import com.arielSoares.WebSystem.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,14 @@ public class ClientService {
     public Client findById(Long id){
         Optional<Client> obj = repository.findById(id);
         return obj.get();
+    }
+
+    public Client insert(Client client){
+        return repository.save(client);
+    }
+
+    public void delete(Long id){
+        repository.deleteById(id);
     }
 
 }
