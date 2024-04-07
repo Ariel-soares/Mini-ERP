@@ -2,12 +2,15 @@ package com.arielSoares.WebSystem.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name="tb_user")
     public class User implements Serializable{
+    @Serial
+    private static final long serialVersionUID = -3708672177660903307L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +20,6 @@ import java.util.Objects;
     private String password;
     private String email;
     private Boolean isAdmin;
-
 
     public User(){}
 

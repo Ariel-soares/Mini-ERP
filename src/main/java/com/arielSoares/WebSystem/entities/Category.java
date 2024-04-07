@@ -3,12 +3,16 @@ package com.arielSoares.WebSystem.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.*;
 
 @Entity
 @Table(name = "tb_category")
 public class Category implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 2246865535864393884L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

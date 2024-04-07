@@ -3,6 +3,7 @@ package com.arielSoares.WebSystem.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,8 @@ import java.util.Objects;
 @Table(name="tb_client")
 public class Client implements Serializable {
 
+    @Serial
+    private static final long serialVersionUID = 4476083195996649801L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

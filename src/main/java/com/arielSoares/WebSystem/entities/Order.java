@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
@@ -15,6 +16,8 @@ import java.util.Set;
 @Table(name = "tb_order")
 public class Order implements Serializable {
 
+    @Serial
+    private static final long serialVersionUID = 8992229259460537708L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
