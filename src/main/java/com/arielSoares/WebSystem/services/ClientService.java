@@ -3,6 +3,7 @@ package com.arielSoares.WebSystem.services;
 import com.arielSoares.WebSystem.entities.Client;
 import com.arielSoares.WebSystem.entities.User;
 import com.arielSoares.WebSystem.repositories.ClientRepository;
+import com.arielSoares.WebSystem.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ public class ClientService {
 
     public Client findById(Long id){
         Optional<Client> obj = repository.findById(id);
-        return obj.get();
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public Client insert(Client client){
