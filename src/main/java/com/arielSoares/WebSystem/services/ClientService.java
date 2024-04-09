@@ -3,8 +3,10 @@ package com.arielSoares.WebSystem.services;
 import com.arielSoares.WebSystem.entities.Client;
 import com.arielSoares.WebSystem.entities.User;
 import com.arielSoares.WebSystem.repositories.ClientRepository;
+import com.arielSoares.WebSystem.services.exceptions.DatabaseException;
 import com.arielSoares.WebSystem.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,7 +32,14 @@ public class ClientService {
     }
 
     public void delete(Long id){
-        repository.deleteById(id);
+        try {
+            if(!repository.existsById(id)) throw new ResourceNotFoundException(id);
+            repository.deleteById(id);
+        }catch (ResourceNotFoundException e){
+            throw new ResourceNotFoundException(id);
+        }catch (DataIntegrityViolationException e){
+            throw new DatabaseException(e.getMessage());
+        }
     }
 
     public Client update(Long id, Client obj){
