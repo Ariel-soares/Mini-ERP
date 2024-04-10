@@ -5,9 +5,11 @@ import com.arielSoares.WebSystem.entities.Product;
 import com.arielSoares.WebSystem.entities.User;
 import com.arielSoares.WebSystem.repositories.ProductRepository;
 import com.arielSoares.WebSystem.repositories.UserRepository;
+import com.arielSoares.WebSystem.services.exceptions.DatabaseException;
 import com.arielSoares.WebSystem.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -47,5 +49,4 @@ public class ProductService {
         product.setDescription(obj.getDescription());
         product.setPrice(obj.getPrice());
     }
-
 }

@@ -41,5 +41,4 @@ public class ProductResource {
         product = service.update(id,product);
         return ResponseEntity.ok().body(product);
     }
-
 }
