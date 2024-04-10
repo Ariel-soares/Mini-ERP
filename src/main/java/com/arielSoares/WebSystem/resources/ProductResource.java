@@ -29,11 +29,17 @@ public class ProductResource {
         return ResponseEntity.ok().body(obj);
     }
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<Product> insert(@RequestBody Product product){
         Product obj = service.insert(product);
         URI uri =ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Product> update(@RequestBody Product product, @PathVariable Long id){
+        product = service.update(id,product);
+        return ResponseEntity.ok().body(product);
     }
 
 }
