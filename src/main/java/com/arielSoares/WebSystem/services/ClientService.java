@@ -5,6 +5,7 @@ import com.arielSoares.WebSystem.entities.User;
 import com.arielSoares.WebSystem.repositories.ClientRepository;
 import com.arielSoares.WebSystem.services.exceptions.DatabaseException;
 import com.arielSoares.WebSystem.services.exceptions.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -43,9 +44,13 @@ public class ClientService {
     }
 
     public Client update(Long id, Client obj){
-        Client client = repository.getReferenceById(id);
-        updateData(client, obj);
-        return repository.save(client);
+        try {
+            Client client = repository.getReferenceById(id);
+            updateData(client, obj);
+            return repository.save(client);
+        } catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException(id);
+        }
     }
 
     private void updateData(Client client, Client obj) {
