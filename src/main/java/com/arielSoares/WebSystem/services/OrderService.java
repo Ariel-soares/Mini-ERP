@@ -41,4 +41,7 @@ public class OrderService {
         order.setOrderStatus(obj.getOrderStatus());
     }
 
+    public Order insert(Order obj){
+        return repository.save(obj);
+    }
 }

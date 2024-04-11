@@ -5,7 +5,9 @@ import com.arielSoares.WebSystem.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -31,6 +33,13 @@ public class OrderResource {
     public ResponseEntity<Order> update(@PathVariable Long id, @RequestBody Order order){
         order = service.update(id, order);
         return ResponseEntity.ok().body(order);
+    }
+
+    @PostMapping
+    public ResponseEntity<Order> insert(@RequestBody Order order){
+        order = service.insert(order);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(order.getId()).toUri();
+        return ResponseEntity.created(uri).body(order);
     }
 
 }
