@@ -2,6 +2,9 @@ package com.arielSoares.WebSystem.services;
 
 import com.arielSoares.WebSystem.entities.Order;
 import com.arielSoares.WebSystem.entities.Product;
+import com.arielSoares.WebSystem.entities.enums.OrderStatus;
+import com.arielSoares.WebSystem.mail.Email;
+import com.arielSoares.WebSystem.mail.mailService.mailService;
 import com.arielSoares.WebSystem.repositories.OrderRepository;
 import com.arielSoares.WebSystem.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
@@ -16,6 +19,10 @@ public class OrderService {
 
     @Autowired
     private OrderRepository repository;
+    @Autowired
+    private com.arielSoares.WebSystem.mail.mailService.mailController mailController;
+    @Autowired
+    private mailService mailService;
 
     public List<Order> findAll(){
         return repository.findAll();
@@ -30,6 +37,9 @@ public class OrderService {
         try {
             Order order = repository.getReferenceById(id);
             updateData(order, obj);
+            if (order.getOrderStatus() == OrderStatus.DELIVERED){
+                mailController.sendMail(new Email("ariel.sfranco@gmail.com", "Pedido finalizado", "Obrigado por comprar conosco"), mailService);
+            }
             return repository.save(order);
         } catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException(id);
