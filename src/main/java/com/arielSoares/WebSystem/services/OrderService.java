@@ -38,7 +38,11 @@ public class OrderService {
             Order order = repository.getReferenceById(id);
             updateData(order, obj);
             if (order.getOrderStatus() == OrderStatus.DELIVERED){
-                mailController.sendMail(new Email("ariel.sfranco@gmail.com", "Pedido finalizado", "Obrigado por comprar conosco"), mailService);
+                try {
+                    mailController.sendMail(new Email("ariel.sfranco@gmail.com", "Pedido finalizado", "Obrigado por comprar conosco"), mailService);
+                } catch (RuntimeException e) {
+                    e.printStackTrace();
+                }
             }
             return repository.save(order);
         } catch (EntityNotFoundException e) {

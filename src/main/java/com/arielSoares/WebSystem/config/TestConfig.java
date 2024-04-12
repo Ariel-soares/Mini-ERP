@@ -2,6 +2,7 @@ package com.arielSoares.WebSystem.config;
 
 import com.arielSoares.WebSystem.entities.*;
 import com.arielSoares.WebSystem.entities.enums.OrderStatus;
+import com.arielSoares.WebSystem.entities.enums.UserRole;
 import com.arielSoares.WebSystem.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -17,6 +18,7 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private UserRepository userRepository;
+
     @Autowired
     private ProductRepository productRepository;
 
@@ -36,8 +38,8 @@ public class TestConfig implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        User u1 = new User(null, "ariel", "ariel.sfranco@gmail.com", true, "Ariel","123");
-        User u2 = new User(null, "Jonata", "jonata@gmail.com", true, "Jonata","123");
+        User u1 = new User(null, "ariel", "ariel.sfranco@gmail.com",  "Ariel","123", UserRole.USER);
+        User u2 = new User(null, "Jonata", "jonata@gmail.com", "Jonata","123", UserRole.ADMIN);
 
         Client c1 = new Client(null, "ariel", "Salvador", "Cliente", "75 9 91796995", "ariel.sfranco@gmail.com");
         Client c2 = new Client(null, "Jonata", "Salvador", "Cliente", "75 9 91796995", "ariel.sfranco@gmail.com");
