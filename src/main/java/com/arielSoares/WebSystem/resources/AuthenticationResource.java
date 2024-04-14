@@ -1,8 +1,10 @@
 package com.arielSoares.WebSystem.resources;
 
 import com.arielSoares.WebSystem.entities.User;
+import com.arielSoares.WebSystem.infra.security.TokenService;
 import com.arielSoares.WebSystem.repositories.UserRepository;
 import com.arielSoares.WebSystem.resources.DTO.AuthenticationDTO;
+import com.arielSoares.WebSystem.resources.DTO.LoginResponseDTO;
 import com.arielSoares.WebSystem.resources.DTO.RegisterDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,13 +25,17 @@ public class AuthenticationResource {
     private AuthenticationManager authenticationManager;
     @Autowired
     private UserRepository repository;
+    @Autowired
+    private TokenService tokenService;
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data){
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);
 
-        return ResponseEntity.ok().build();
+        var token = tokenService.generateToken((User) auth.getPrincipal());
+
+        return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 
     @PostMapping("/register")
