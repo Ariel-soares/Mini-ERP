@@ -2,7 +2,6 @@
 package com.arielSoares.WebSystem.infra.security;
 
 import com.arielSoares.WebSystem.repositories.UserRepository;
-import com.arielSoares.WebSystem.services.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
